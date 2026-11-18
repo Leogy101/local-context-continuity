@@ -1,5 +1,9 @@
 # Local Context Continuity
 
+<p align="center">
+  <img src="docs/assets/lcc-banner.png" width="900" alt="Local Context Continuity logo with a blue and purple infinity loop, a chat bubble, and a shield with a check mark">
+</p>
+
 Local Context Continuity (LCC) preserves observed task state across process
 restarts and builds bounded context packets. The offline alpha reads a
 synthetic append-only JSONL source, checkpoints progress in SQLite, and
