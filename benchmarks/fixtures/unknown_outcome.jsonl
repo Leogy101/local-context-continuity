@@ -1,0 +1,4 @@
+{"schema":1,"source_id":"m3-unknown-outcome"}
+{"id":"U-ASK","kind":"message","scope":{"task":"winch-adjustment","session":"shift-5","workflow":"main"},"origin":"user","role":"user","text":"Confirm what happened to the winch adjustment before deciding whether another change is needed."}
+{"id":"U-START","kind":"tool_started","scope":{"task":"winch-adjustment","session":"shift-5","workflow":"main"},"origin":"runtime","operation":"Adjust-6"}
+{"id":"U-TIMEOUT","kind":"tool_timeout","scope":{"task":"winch-adjustment","session":"shift-5","workflow":"main"},"origin":"runtime","operation":"Adjust-6"}

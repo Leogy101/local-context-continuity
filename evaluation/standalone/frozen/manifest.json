@@ -1,0 +1,218 @@
+{
+  "case_inputs": [
+    {
+      "arms": {
+        "lcc": {
+          "packet": {
+            "path": "packets/requirement_correction-lcc.json",
+            "sha256": "52a3d754e13fb067e6c9d87a00fcb0f453cedeaf223e92490ab391515d8110ef"
+          },
+          "request": {
+            "path": "requests/requirement_correction-lcc.json",
+            "sha256": "6965296ce7c5696c5bdde23aea09af4ccf1a311be3237f644338d839ea8feba4"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 4281,
+            "model_visible_packet_bytes": 3106,
+            "packet_bytes": 3122,
+            "rendered_request_bytes": 4807,
+            "wrapper_bytes": 526
+          }
+        },
+        "recent_history": {
+          "packet": {
+            "path": "packets/requirement_correction-recent_history.json",
+            "sha256": "2dc275701e66a36a7eb25f859a7f37b4c414c6672be86aa6832e680d8192b446"
+          },
+          "request": {
+            "path": "requests/requirement_correction-recent_history.json",
+            "sha256": "48d326c8e308ca47a8397535b95a945b0d1e373ab53b5878fa42bf43b12b8fea"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 8484,
+            "model_visible_packet_bytes": 7309,
+            "packet_bytes": 7325,
+            "rendered_request_bytes": 8948,
+            "wrapper_bytes": 464
+          }
+        }
+      },
+      "boundary": "after_transition",
+      "caller_context": {
+        "path": "contexts/requirement_correction.json",
+        "sha256": "51fd781397d3aa912eca225a3d7008b2fbae29dbaaf38c304a0dc1cfdd00aca5"
+      },
+      "cursor": "v1.cd8e.9461cee064ff588de47638a768a3f3173f4f465d0e0b098f68fee6cdcb2f957f",
+      "event_count": 24,
+      "last_consumed_event": "R-CORRECTION",
+      "model_visible_source_alias": "source-01",
+      "prefix": {
+        "path": "prefixes/requirement_correction.jsonl",
+        "sha256": "9461cee064ff588de47638a768a3f3173f4f465d0e0b098f68fee6cdcb2f957f"
+      },
+      "requests_identical": false,
+      "scenario": "requirement_correction",
+      "scope": {
+        "session": "watch-3",
+        "task": "relay-transfer",
+        "workflow": "main"
+      },
+      "source_id": "m3-requirement-correction"
+    },
+    {
+      "arms": {
+        "lcc": {
+          "packet": {
+            "path": "packets/pending_tool-lcc.json",
+            "sha256": "cf5a48d557fdcfc6e542897fb4c09d136d69e99a1fade9397450ad019c7a8ee4"
+          },
+          "request": {
+            "path": "requests/pending_tool-lcc.json",
+            "sha256": "6fd499e919ce7d6d0623cff53328a8721a21c7481f0eee422709debb631a3924"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 9331,
+            "model_visible_packet_bytes": 8156,
+            "packet_bytes": 8162,
+            "rendered_request_bytes": 9913,
+            "wrapper_bytes": 582
+          }
+        },
+        "recent_history": {
+          "packet": {
+            "path": "packets/pending_tool-recent_history.json",
+            "sha256": "61b2242d7eafd4033712c96af769624175eb33ff7f750ede185abe4549c71e48"
+          },
+          "request": {
+            "path": "requests/pending_tool-recent_history.json",
+            "sha256": "212a95ed4e81abff292f752e4bde4e228502d8071fdd9442ccea2ecd52439307"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 8377,
+            "model_visible_packet_bytes": 7202,
+            "packet_bytes": 7208,
+            "rendered_request_bytes": 8833,
+            "wrapper_bytes": 456
+          }
+        }
+      },
+      "boundary": 10,
+      "caller_context": {
+        "path": "contexts/pending_tool.json",
+        "sha256": "3f2463fd7dbb257e203dfa213c513870566c8b849b3d78c368119ee1751ed034"
+      },
+      "cursor": "v1.cc1e.9d09e69d046142d736bd7782c73f49056192f804b308bf2144778c8827b27200",
+      "event_count": 23,
+      "last_consumed_event": "Noise-10-R",
+      "model_visible_source_alias": "source-02",
+      "prefix": {
+        "path": "prefixes/pending_tool.jsonl",
+        "sha256": "9d09e69d046142d736bd7782c73f49056192f804b308bf2144778c8827b27200"
+      },
+      "requests_identical": false,
+      "scenario": "pending_tool",
+      "scope": {
+        "session": "watch-7",
+        "task": "lamp-test",
+        "workflow": "main"
+      },
+      "source_id": "m3-pending-tool"
+    },
+    {
+      "arms": {
+        "lcc": {
+          "packet": {
+            "path": "packets/stale_verification-lcc.json",
+            "sha256": "7d818ab6541ee1786ceacb81985623aa8349848336160ea2e95e12f94467aab1"
+          },
+          "request": {
+            "path": "requests/stale_verification-lcc.json",
+            "sha256": "1e347bc3a1aa804f016d41025ef015f820eb7b9a5e154fd9d5afadc091ae8428"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 4927,
+            "model_visible_packet_bytes": 3752,
+            "packet_bytes": 3764,
+            "rendered_request_bytes": 5571,
+            "wrapper_bytes": 644
+          }
+        },
+        "recent_history": {
+          "packet": {
+            "path": "packets/stale_verification-recent_history.json",
+            "sha256": "d40e62d6e97f0ec3e1f06f99706b9a92f2b6aecdc759e1762f8829326e464dc5"
+          },
+          "request": {
+            "path": "requests/stale_verification-recent_history.json",
+            "sha256": "c9529611ed0b8b0f2dc6408b7afca5f0126ed30432808c86834cc19df7ec6189"
+          },
+          "sizes": {
+            "instruction_bytes": 1175,
+            "message_body_bytes": 8985,
+            "model_visible_packet_bytes": 7810,
+            "packet_bytes": 7822,
+            "rendered_request_bytes": 9541,
+            "wrapper_bytes": 556
+          }
+        }
+      },
+      "boundary": "after_transition",
+      "caller_context": {
+        "path": "contexts/stale_verification.json",
+        "sha256": "96d8a3fa9725fe4e76b8779f6a49f74518a0f0710628bcb4a3b02a3070514f57"
+      },
+      "cursor": "v1.ce64.eecdbb50d056c2f443f318e4d0b6d3be87b77a4a9ff9afe25604d032e6d10f20",
+      "event_count": 25,
+      "last_consumed_event": "V-EDIT-B",
+      "model_visible_source_alias": "source-03",
+      "prefix": {
+        "path": "prefixes/stale_verification.jsonl",
+        "sha256": "eecdbb50d056c2f443f318e4d0b6d3be87b77a4a9ff9afe25604d032e6d10f20"
+      },
+      "requests_identical": false,
+      "scenario": "stale_verification",
+      "scope": {
+        "session": "edit-2",
+        "task": "beacon-settings",
+        "workflow": "main"
+      },
+      "source_id": "m3-stale-verification"
+    }
+  ],
+  "common_instruction_sha256": "b5c893516f43669bfc293ada8b67e5f7948cbe11e3347688d19cac41df4cdfd2",
+  "compactions": 10,
+  "m3_reference_checkout": "9890337d9b05dc1459d29724401d0eda441ace7f",
+  "repository_file_sha256": {
+    "benchmarks/baselines.py": "0ea68ea455e7b6c2ecd70acaaad0167b4381ac6fdba72102c13640998b7e5335",
+    "benchmarks/fixtures/oracle.json": "2506047e914d207cccfe04d7b3895d21c9b07682677d9260734ede64537345db",
+    "benchmarks/fixtures/pending_tool.jsonl": "f0c8d0019efa72fe65ee9970f3ea57e7de4630bb6e28e0a2b75663184b8a5344",
+    "benchmarks/fixtures/requirement_correction.jsonl": "0dc9fda02d228b6612a9727de93de79f9bb3fff7998897a1e0966cf51ad89857",
+    "benchmarks/fixtures/stale_verification.jsonl": "5ec6d86b6cc77f8255ceb185b74ef63ddcb7f193d520bbea06127c7e586b2d7f",
+    "benchmarks/results/m3.json": "1eb6022c022402c1610f726f5c8d36338e1f25951030d1a836d43f9d7de978ae",
+    "benchmarks/run.py": "612d6caff13d63ea2ebd906667b42d4cc630e06a7ab1ef3db5916b170596e45b",
+    "benchmarks/strategies.md": "a4c8edd2571a68d4ab49c42fdaf83797f916b2adcf929823e3831f9d1f231468",
+    "evaluation/standalone/capture.py": "f272589189b5988b29c5e4fb3ae23fcafb6949293a05fdde34b993ccb8971dba",
+    "evaluation/standalone/oracle.json": "903af834b3215b4c8e9806147c4c982b2b53ed69d47021f192607bf7e1dca90b",
+    "evaluation/standalone/prepare.py": "1d932af8e10e91225c54bff76795abad416634de2e6934f36da4a1d88313b215",
+    "evaluation/standalone/score.py": "0ba9fbbf722a7ae11517ae3a1518e6cb62200df2a2b097d3cf6f52c152776f99",
+    "lcc/__init__.py": "b842806fcd6efbec1d8b123c5dd9ec1c6c96429f7f34b55f16fba86836f00a87",
+    "lcc/__main__.py": "2147ea8cb69501c98e63c8a8a2b0514da68f38112f7d76871ff7ad5b218904c5",
+    "lcc/checkpoint.py": "38e7e1c6aea0e05be8ffa8aa7f6e4375a700befc68fc29b523043d2eb136b391",
+    "lcc/frames.py": "cfdc83aea414fca502c0be3302c059243e0ee577806f19709f65773d0dfeb454",
+    "lcc/packet.py": "1bee88a63880f264ecc341b2d84b2ac0a25c3d6b15a5db75dc30c57ee06fb5b2",
+    "lcc/projection.py": "6250e3b8985c9175db4be37642ed58fd777e4dd4020d51c5216eb647b426a9bf",
+    "lcc/source.py": "c13f721ba1bd35a04b4a31fe8de94bcdb2e69bd8845002e5eb5917a5ead0a603",
+    "lcc/task_context.py": "850242e6544d210e78d375163d9bf64e581a95114efd37efba3e3cab5db236e0"
+  },
+  "schema": "lcc-standalone-inputs/1",
+  "selection_ceiling": {
+    "bytes": 8192,
+    "stage": "serialized_resume_packet"
+  },
+  "size_unit": "utf8_bytes"
+}

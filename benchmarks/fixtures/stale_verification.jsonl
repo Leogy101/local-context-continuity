@@ -1,0 +1,6 @@
+{"schema":1,"source_id":"m3-stale-verification"}
+{"id":"V-ASK","kind":"message","scope":{"task":"beacon-settings","session":"edit-2","workflow":"main"},"origin":"user","role":"user","text":"Verify the current beacon settings before cutting over."}
+{"id":"V-EDIT-A","kind":"artifact_observed","scope":{"task":"beacon-settings","session":"edit-2","workflow":"main"},"origin":"runtime","artifact":"beacon.cfg","revision":"A"}
+{"id":"V-START","kind":"tool_started","scope":{"task":"beacon-settings","session":"edit-2","workflow":"main"},"origin":"runtime","operation":"Verify-A","artifact":"beacon.cfg","revision":"A"}
+{"id":"V-PASS","kind":"tool_completed","scope":{"task":"beacon-settings","session":"edit-2","workflow":"main"},"origin":"tool","operation":"Verify-A","receipt":{"suite":"beacon-settings","passed":4},"verified":true}
+{"id":"V-EDIT-B","kind":"artifact_observed","scope":{"task":"beacon-settings","session":"edit-2","workflow":"main"},"origin":"runtime","artifact":"beacon.cfg","revision":"B"}

@@ -1,0 +1,5 @@
+{"schema":1,"source_id":"m3-clock-skew"}
+{"id":"C-RESERVE","kind":"message","scope":{"task":"flood-lanterns","session":"call-9","workflow":"main"},"origin":"user","role":"user","text":"Hold two reserve lanterns at the shelter.","timestamp":"2034-05-04T19:37:00Z"}
+{"id":"C-WEST","kind":"message","scope":{"task":"flood-lanterns","session":"call-9","workflow":"main"},"origin":"user","role":"user","text":"Send the flood lanterns to the west pier.","timestamp":"2034-05-04T19:40:00Z"}
+{"id":"C-EAST","kind":"message","scope":{"task":"flood-lanterns","session":"call-9","workflow":"main"},"origin":"user","role":"user","text":"Send the flood lanterns to the east pier.","timestamp":"2034-05-04T18:55:00Z"}
+{"id":"C-CORRECTION","kind":"message_superseded","scope":{"task":"flood-lanterns","session":"call-9","workflow":"main"},"origin":"user","replaces":"C-WEST","replacement":"C-EAST","timestamp":"2034-05-04T18:56:00Z"}

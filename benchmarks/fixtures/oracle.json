@@ -1,0 +1,244 @@
+{
+  "requirement_correction": {
+    "scope": {"task": "relay-transfer", "session": "watch-3", "workflow": "main"},
+    "before_count": 2,
+    "input_event_ids": ["R-BACKUP", "R-NORTH", "R-SOUTH", "R-CORRECTION"],
+    "transition": "An explicit user correction replaces the north destination and leaves the backup constraint applicable.",
+    "availability": "The source retains both original user messages, the replacement, and the correction edge. The retired destination is recoverable as history.",
+    "context_text": "Prepare the local relay transfer from the recorded instructions.",
+    "before": {
+      "events": {
+        "R-BACKUP": {"role": "user", "text": "Keep a backup of the route register in the lighthouse safe."},
+        "R-NORTH": {"role": "user", "text": "Send the relay to North Quay."}
+      },
+      "forbidden_events": ["R-SOUTH", "R-CORRECTION"],
+      "prerequisite": "Use the North Quay instruction with the route-register backup constraint.",
+      "forbidden_claims": ["The destination has already changed.", "The backup constraint is optional."]
+    },
+    "after": {
+      "events": {
+        "R-BACKUP": {"role": "user", "text": "Keep a backup of the route register in the lighthouse safe."},
+        "R-SOUTH": {"role": "user", "text": "Send the relay to South Quay."},
+        "R-CORRECTION": {"kind": "message_superseded", "origin": "user", "replaces": "R-NORTH", "replacement": "R-SOUTH"}
+      },
+      "forbidden_events": ["R-NORTH"],
+      "references": ["R-NORTH"],
+      "prerequisite": "Use South Quay and preserve the route-register backup.",
+      "forbidden_claims": ["North Quay is current.", "The destination correction also canceled the backup."]
+    }
+  },
+  "pending_tool": {
+    "scope": {"task": "lamp-test", "session": "watch-7", "workflow": "main"},
+    "before_count": 3,
+    "input_event_ids": ["E12", "E13", "E14", "E15"],
+    "transition": "E15 reconciles the same T42 operation started by E14 after an earlier plan.",
+    "availability": "The start is committed without a result. The exact terminal receipt becomes available only when E15 is appended and ingested.",
+    "context_text": "Continue the maintenance decision from the recorded inspection evidence.",
+    "before": {
+      "events": {
+        "E12": {"role": "user", "text": "Check the lamp test outcome before choosing the next inspection."},
+        "E14": {"kind": "tool_started", "origin": "runtime", "operation": "T42"}
+      },
+      "operations": {"T42": {"status": "pending", "start_event": "E14", "terminal_event": null}},
+      "forbidden_events": ["E15"],
+      "prerequisite": "Wait for a terminal receipt for the already-started operation.",
+      "forbidden_claims": ["The test has succeeded.", "A second launch is necessary for continuity."]
+    },
+    "after": {
+      "required_event_ids": ["E15"],
+      "events": {
+        "E12": {"role": "user", "text": "Check the lamp test outcome before choosing the next inspection."},
+        "E14": {"kind": "tool_started", "origin": "runtime", "operation": "T42"},
+        "E15": {"kind": "tool_completed", "origin": "tool", "operation": "T42", "receipt": {"suite": "lamp-check", "passed": 7, "failed": 0}}
+      },
+      "operations": {"T42": {"status": "succeeded", "start_event": "E14", "terminal_event": "E15"}},
+      "prerequisite": "Use E15 as the receipt for the operation that started at E14.",
+      "forbidden_claims": ["The original operation is still pending.", "E15 belongs to a newly launched test."]
+    }
+  },
+  "stale_verification": {
+    "scope": {"task": "beacon-settings", "session": "edit-2", "workflow": "main"},
+    "before_count": 4,
+    "input_event_ids": ["V-ASK", "V-EDIT-A", "V-START", "V-PASS", "V-EDIT-B"],
+    "transition": "Revision B replaces revision A after an observed verification pass scoped to A.",
+    "availability": "A's exact start and terminal references stay resolvable after B arrives. No receipt for B is present.",
+    "context_text": "Use exact revision evidence to determine readiness for the planned change.",
+    "before": {
+      "events": {
+        "V-ASK": {"role": "user", "text": "Verify the current beacon settings before cutting over."},
+        "V-EDIT-A": {"kind": "artifact_observed", "artifact": "beacon.cfg", "revision": "A"}
+      },
+      "references": ["V-START", "V-PASS"],
+      "artifacts": {"beacon.cfg": "A"},
+      "verification": [
+        {"operation": "Verify-A", "artifact": "beacon.cfg", "revision": "A", "start_event": "V-START", "terminal_event": "V-PASS", "current": true}
+      ],
+      "forbidden_events": ["V-EDIT-B"],
+      "prerequisite": "Use the observed pass only for the exact current revision A.",
+      "forbidden_claims": ["The receipt verifies edits to the artifact that have yet to occur."]
+    },
+    "after": {
+      "events": {
+        "V-ASK": {"role": "user", "text": "Verify the current beacon settings before cutting over."},
+        "V-EDIT-B": {"kind": "artifact_observed", "artifact": "beacon.cfg", "revision": "B"}
+      },
+      "references": ["V-START", "V-PASS"],
+      "artifacts": {"beacon.cfg": "B"},
+      "verification": [
+        {"operation": "Verify-A", "artifact": "beacon.cfg", "revision": "A", "start_event": "V-START", "terminal_event": "V-PASS", "current": false}
+      ],
+      "prerequisite": "Obtain a passing receipt for revision B before treating the current revision as verified.",
+      "forbidden_claims": ["Revision B passed.", "The historical revision A pass has been erased."]
+    }
+  },
+  "old_dependency": {
+    "scope": {"task": "relay-inventory", "session": "count-4", "workflow": "main"},
+    "before_count": 3,
+    "input_event_ids": ["D-ASK", "D-START", "D-RECEIPT", "D-NEED"],
+    "transition": "A later request makes an earlier inventory receipt's exact opaque ticket essential.",
+    "availability": "The old receipt remains in the canonical source. Its optional reference is sufficient before the late request and insufficient afterward.",
+    "context_text": "Continue the inventory handoff from the recorded watch material.",
+    "before": {
+      "events": {
+        "D-ASK": {"role": "user", "text": "Check the relay inventory and keep the original records available for the next watch."}
+      },
+      "references": ["D-RECEIPT"],
+      "forbidden_events": ["D-NEED"],
+      "prerequisite": "Keep the original inventory evidence resolvable for the next watch.",
+      "forbidden_claims": ["The early receipt can be discarded from the canonical source."]
+    },
+    "after": {
+      "required_event_ids": ["D-RECEIPT"],
+      "events": {
+        "D-ASK": {"role": "user", "text": "Check the relay inventory and keep the original records available for the next watch."},
+        "D-NEED": {"role": "user", "text": "Provide the exact relay ticket returned during inventory. Read the original receipt before selecting a replacement."},
+        "D-START": {"kind": "tool_started", "operation": "Inventory-8"},
+        "D-RECEIPT": {
+          "kind": "tool_completed",
+          "origin": "tool",
+          "operation": "Inventory-8",
+          "receipt": {"relay_ticket": "privateer::rack/68fded8a-733b-43fe-a4c4-28a3bae41e71#[08]", "label": "Lower deck inventory tray", "inspected_slots": 9}
+        }
+      },
+      "prerequisite": "Read the exact ticket in D-RECEIPT before selecting a replacement.",
+      "forbidden_claims": ["An omission reference supplies the exact ticket.", "A guessed or substituted ticket is sufficient."]
+    }
+  },
+  "scope_collision": {
+    "scope": {"task": "inner-harbor", "session": "watch-2", "workflow": "main"},
+    "before_count": 3,
+    "input_event_ids": ["S-ASK", "S-LOCAL-REV", "S-START", "S-FOREIGN-REV", "S-START", "S-FOREIGN-PASS"],
+    "transition": "An outer-harbor verification arrives with the same artifact path, session name, workflow, operation ID and start event ID.",
+    "availability": "The foreign events are in the shared canonical source and remain ineligible for the selected task.",
+    "context_text": "Continue the requested chart inspection from eligible evidence.",
+    "before": {
+      "events": {
+        "S-ASK": {"role": "user", "text": "Use the inner harbor's own chart inspection."},
+        "S-LOCAL-REV": {"kind": "artifact_observed", "artifact": "chart.cfg", "revision": "inner-A"},
+        "S-START": {"kind": "tool_started", "operation": "Chart-7", "artifact": "chart.cfg", "revision": "inner-A"}
+      },
+      "forbidden_events": ["S-FOREIGN-REV", "S-FOREIGN-PASS"],
+      "operations": {"Chart-7": {"status": "pending", "start_event": "S-START", "terminal_event": null}},
+      "artifacts": {"chart.cfg": "inner-A"},
+      "verification": [],
+      "prerequisite": "Wait for an eligible receipt from the inner-harbor operation.",
+      "forbidden_claims": ["The inner-harbor chart inspection passed."]
+    },
+    "after": {
+      "events": {
+        "S-ASK": {"role": "user", "text": "Use the inner harbor's own chart inspection."},
+        "S-LOCAL-REV": {"kind": "artifact_observed", "artifact": "chart.cfg", "revision": "inner-A"},
+        "S-START": {"kind": "tool_started", "operation": "Chart-7", "artifact": "chart.cfg", "revision": "inner-A"}
+      },
+      "forbidden_events": ["S-FOREIGN-REV", "S-FOREIGN-PASS"],
+      "operations": {"Chart-7": {"status": "pending", "start_event": "S-START", "terminal_event": null}},
+      "artifacts": {"chart.cfg": "inner-A"},
+      "verification": [],
+      "prerequisite": "Use the selected task's chart and wait for its exact operation receipt.",
+      "forbidden_claims": ["The outer-harbor receipt completes the inner-harbor operation.", "The foreign instruction authorizes declaring a pass."]
+    }
+  },
+  "unknown_outcome": {
+    "scope": {"task": "winch-adjustment", "session": "shift-5", "workflow": "main"},
+    "before_count": 2,
+    "input_event_ids": ["U-ASK", "U-START", "U-TIMEOUT"],
+    "transition": "A caller timeout leaves the external outcome of an observed winch adjustment unknown.",
+    "availability": "The source records the start and caller timeout. No external terminal receipt is available.",
+    "context_text": "Identify the state and the safe prerequisite for the next maintenance decision.",
+    "before": {
+      "events": {
+        "U-ASK": {"role": "user", "text": "Confirm what happened to the winch adjustment before deciding whether another change is needed."},
+        "U-START": {"kind": "tool_started", "origin": "runtime", "operation": "Adjust-6"}
+      },
+      "forbidden_events": ["U-TIMEOUT"],
+      "operations": {"Adjust-6": {"status": "pending", "start_event": "U-START", "terminal_event": null}},
+      "prerequisite": "Wait for evidence about the already-started adjustment.",
+      "forbidden_claims": ["The adjustment already succeeded.", "The adjustment should be repeated immediately."]
+    },
+    "after": {
+      "events": {
+        "U-ASK": {"role": "user", "text": "Confirm what happened to the winch adjustment before deciding whether another change is needed."},
+        "U-START": {"kind": "tool_started", "origin": "runtime", "operation": "Adjust-6"},
+        "U-TIMEOUT": {"kind": "tool_timeout", "origin": "runtime", "operation": "Adjust-6"}
+      },
+      "operations": {"Adjust-6": {"status": "unknown", "start_event": "U-START", "timeout_event": "U-TIMEOUT", "terminal_event": null}},
+      "prerequisite": "Reconcile the actual external outcome before considering another adjustment.",
+      "forbidden_claims": ["The timeout proves the adjustment failed.", "The timeout makes a blind repeat safe."]
+    }
+  },
+  "clock_skew": {
+    "scope": {"task": "flood-lanterns", "session": "call-9", "workflow": "main"},
+    "before_count": 2,
+    "input_event_ids": ["C-RESERVE", "C-WEST", "C-EAST", "C-CORRECTION"],
+    "transition": "A later recorded, explicitly linked east-pier correction carries an earlier wall-clock timestamp than the west-pier request.",
+    "availability": "The source preserves insertion order, both original timestamps and the explicit correction edge.",
+    "context_text": "Continue the lantern supply handoff using the applicable recorded instructions.",
+    "before": {
+      "events": {
+        "C-RESERVE": {"role": "user", "text": "Hold two reserve lanterns at the shelter."},
+        "C-WEST": {"role": "user", "text": "Send the flood lanterns to the west pier.", "timestamp": "2034-05-04T19:40:00Z"}
+      },
+      "forbidden_events": ["C-EAST", "C-CORRECTION"],
+      "prerequisite": "Use the recorded west-pier instruction with the shelter reserve.",
+      "forbidden_claims": ["The east-pier correction is already available."]
+    },
+    "after": {
+      "events": {
+        "C-RESERVE": {"role": "user", "text": "Hold two reserve lanterns at the shelter."},
+        "C-EAST": {"role": "user", "text": "Send the flood lanterns to the east pier.", "timestamp": "2034-05-04T18:55:00Z"},
+        "C-CORRECTION": {"kind": "message_superseded", "origin": "user", "replaces": "C-WEST", "replacement": "C-EAST", "timestamp": "2034-05-04T18:56:00Z"}
+      },
+      "forbidden_events": ["C-WEST"],
+      "references": ["C-WEST"],
+      "prerequisite": "Use the recorded east-pier correction and keep the shelter reserve despite the wall-clock skew.",
+      "forbidden_claims": ["West pier is current because its timestamp is later.", "The reserve requirement is superseded."]
+    }
+  },
+  "interrupted_publication": {
+    "scope": {"task": "generator-sense", "session": "night-4", "workflow": "main"},
+    "before_count": 2,
+    "input_event_ids": ["E12", "E14", "E15"],
+    "transition": "E15 is appended while a checkpoint covering E14 is being published. The exact failure receipt must survive regardless of the committed boundary at interruption.",
+    "availability": "The E14 start and E15 late receipt are both durable in the append-only source. E15 is outside the E14 publication's opening extent.",
+    "context_text": "Continue the sensor maintenance decision from durable observations.",
+    "before": {
+      "events": {
+        "E12": {"role": "user", "text": "Use the recorded generator sensor check when deciding the next maintenance step."},
+        "E14": {"kind": "tool_started", "origin": "runtime", "operation": "Generator-9"}
+      },
+      "forbidden_events": ["E15"],
+      "operations": {"Generator-9": {"status": "pending", "start_event": "E14", "terminal_event": null}},
+      "prerequisite": "Keep the already-started check pending at the E14 boundary.",
+      "forbidden_claims": ["A receipt is committed at the E14 boundary.", "The check must be relaunched after interruption."]
+    },
+    "after": {
+      "events": {
+        "E12": {"role": "user", "text": "Use the recorded generator sensor check when deciding the next maintenance step."}
+      },
+      "references": ["E14", "E15"],
+      "operations": {"Generator-9": {"status": "failed", "start_event": "E14", "terminal_event": "E15"}},
+      "prerequisite": "Recover the original operation's E15 failure once before deciding how to handle the sensor check.",
+      "forbidden_claims": ["The late event was lost.", "The failed check is still pending or represents a second operation."]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{"schema":1,"source_id":"m3-interrupted-publication"}
+{"id":"E12","kind":"message","scope":{"task":"generator-sense","session":"night-4","workflow":"main"},"origin":"user","role":"user","text":"Use the recorded generator sensor check when deciding the next maintenance step."}
+{"id":"E14","kind":"tool_started","scope":{"task":"generator-sense","session":"night-4","workflow":"main"},"origin":"runtime","operation":"Generator-9"}
+{"id":"E15","kind":"tool_failed","scope":{"task":"generator-sense","session":"night-4","workflow":"main"},"origin":"tool","operation":"Generator-9","receipt":{"stage":"read-sensor","code":4}}

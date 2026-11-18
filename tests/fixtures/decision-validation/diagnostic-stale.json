@@ -1,0 +1,16 @@
+{
+  "next_action": "continue",
+  "evidence_ids": [
+    "V-PASS"
+  ],
+  "state": {
+    "destination": null,
+    "constraint_event_ids": [
+      "V-PASS"
+    ],
+    "operation_id": "Verify-A",
+    "operation_status": "succeeded",
+    "current_revision": "B",
+    "last_passing_revision": "A"
+  }
+}

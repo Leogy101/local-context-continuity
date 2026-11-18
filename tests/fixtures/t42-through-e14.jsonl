@@ -1,0 +1,15 @@
+{"schema":1,"source_id":"fictional-demo"}
+{"id":"E01","kind":"artifact_observed","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"tool","artifact":"beacon.cfg","revision":"A","timestamp":"2031-02-03T12:00:00Z"}
+{"id":"E02","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"catalog-spares"}
+{"id":"E03","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"inspect-lenses"}
+{"id":"E04","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"record-tidal-notes"}
+{"id":"E05","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"review-weather"}
+{"id":"E06","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"find-lamp-manual"}
+{"id":"E07","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"read-rotor-spec"}
+{"id":"E08","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"compare-fuse-ratings"}
+{"id":"E09","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"list-spare-gaskets"}
+{"id":"E10","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"measure-service-window"}
+{"id":"E11","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"read-service-notes"}
+{"id":"E12","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"compare-signal-intervals"}
+{"id":"E13","kind":"tool_planned","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"T42"}
+{"id":"E14","kind":"tool_started","scope":{"task":"lighthouse","session":"watch-7","workflow":"main"},"origin":"runtime","operation":"T42","artifact":"beacon.cfg","revision":"A"}

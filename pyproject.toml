@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-context-continuity"
+version = "1.0.0a1"
+description = "Offline synthetic task-state recovery and decision validation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = []
+
+[project.scripts]
+lcc-alpha-demo = "lcc.alpha.__main__:main"
+
+[tool.setuptools]
+packages = ["lcc", "lcc.alpha", "tests.fixtures"]
+
+[tool.setuptools.package-data]
+"tests.fixtures" = ["t42-through-e14.jsonl", "t42-e15-to-e16.jsonl"]

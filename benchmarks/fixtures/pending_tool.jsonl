@@ -1,0 +1,5 @@
+{"schema":1,"source_id":"m3-pending-tool"}
+{"id":"E12","kind":"message","scope":{"task":"lamp-test","session":"watch-7","workflow":"main"},"origin":"user","role":"user","text":"Check the lamp test outcome before choosing the next inspection."}
+{"id":"E13","kind":"tool_planned","scope":{"task":"lamp-test","session":"watch-7","workflow":"main"},"origin":"assistant","operation":"T42"}
+{"id":"E14","kind":"tool_started","scope":{"task":"lamp-test","session":"watch-7","workflow":"main"},"origin":"runtime","operation":"T42"}
+{"id":"E15","kind":"tool_completed","scope":{"task":"lamp-test","session":"watch-7","workflow":"main"},"origin":"tool","operation":"T42","receipt":{"suite":"lamp-check","passed":7,"failed":0}}

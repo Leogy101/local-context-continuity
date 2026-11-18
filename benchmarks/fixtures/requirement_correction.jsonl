@@ -1,0 +1,5 @@
+{"schema":1,"source_id":"m3-requirement-correction"}
+{"id":"R-BACKUP","kind":"message","scope":{"task":"relay-transfer","session":"watch-3","workflow":"main"},"origin":"user","role":"user","text":"Keep a backup of the route register in the lighthouse safe."}
+{"id":"R-NORTH","kind":"message","scope":{"task":"relay-transfer","session":"watch-3","workflow":"main"},"origin":"user","role":"user","text":"Send the relay to North Quay."}
+{"id":"R-SOUTH","kind":"message","scope":{"task":"relay-transfer","session":"watch-3","workflow":"main"},"origin":"user","role":"user","text":"Send the relay to South Quay."}
+{"id":"R-CORRECTION","kind":"message_superseded","scope":{"task":"relay-transfer","session":"watch-3","workflow":"main"},"origin":"user","replaces":"R-NORTH","replacement":"R-SOUTH"}
